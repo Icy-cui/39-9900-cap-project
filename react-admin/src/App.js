@@ -1,5 +1,6 @@
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import SignUp from "./pages/Signup";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -7,9 +8,7 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="app">
-          <main className="content"></main>
-        </div>
+        <SignUp/>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
