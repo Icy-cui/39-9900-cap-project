@@ -11,6 +11,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useForm } from "react-hook-form"
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -26,14 +29,33 @@ function Copyright(props) {
 }
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const navigate = useNavigate();
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+  const { register, handleSubmit } = useForm()
+  const onSubmit = (data) => {
+    console.log(data)
+    axios
+      .get("./api/register.json", {
+        firstName:data['firstName'],
+        lastName: data['lastName'],
+        email: data['email'],
+        password: data['password'],
+      })
+      .then(function (res) {
+        console.log(res.data);
+
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
       <Container component="main" maxWidth="xs">
@@ -52,7 +74,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -64,6 +86,7 @@ export default function SignUp() {
                   label="First Name"
                   autoFocus
                   color='secondary'
+                  {...register("firstName")}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -75,6 +98,7 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                   color='secondary'
+                  {...register("lastName")}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -86,6 +110,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   color='secondary'
+                  {...register("email")}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +123,7 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                   color='secondary'
+                  {...register("password")}
                 />
               </Grid>
               <Grid item xs={12}>
