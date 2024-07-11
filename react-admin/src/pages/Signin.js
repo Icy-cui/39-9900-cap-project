@@ -11,6 +11,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -31,6 +33,7 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,6 +41,47 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    // 1. axios
+    // axios
+    //   .get("./api/register.json", {
+    //     email: data.get("email"),
+    //     password: data.get("password"),
+    //   })
+    //   .then(function (res) {
+    //     console.log(res.data.data);
+    //     // localStorage.setItem("user", JSON.stringify(res.data.data))
+    //     // if(res.data.password != data.get("password")){
+    //     //   alert ("Wrong Password")
+    //     // }
+    //     if(res.status !== 200){
+    //       deal error
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
+
+    // 2. fetch
+    // const res = fetch("./api/user.json", { method: "GET" }).then((res) => {
+    //   res.json().then((data) => {
+    //     console.log(data);
+    //     localStorage.setItem("user", JSON.stringify(data.data));
+    //     navigate("/");
+    //   });
+    // });
+    getData()
+  };
+
+  // 3. async
+  const getData = async () => {
+    let res = await fetch("./api/user.json");
+    if(res.status === 200){
+      let data = await res.json().data;
+      let resData = data.data
+      // ...验证信息
+      console.log(resData)
+      navigate("/");
+    }else{
+      throw new Error(res.status)
+    }
   };
 
   return (

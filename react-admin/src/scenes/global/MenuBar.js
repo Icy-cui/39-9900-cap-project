@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, useTheme, Typography } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -19,31 +19,29 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
     <MenuItem
       active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
+      style={{ color: colors.grey[100] }}
       onClick={() => setSelected(title)}
       icon={icon}
     >
       <Typography>{title}</Typography>
-      <Link to={to} />
+      <Link t0={to}></Link>
     </MenuItem>
   );
 };
 
-export default function Menubar() {
+export default function MenuBar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-
   return (
     <Box
       sx={{
-        "& .ps-menuitem-root:hover": {
+        "& .ps-menu-root:hover": {
           backgroundColor: "transparent !important",
         },
         "& .ps-menu-button:hover": {
@@ -52,35 +50,32 @@ export default function Menubar() {
         },
         "& .ps-menu-label.ps-active": {
           color:
-            theme.palette.mode === "dark" ? colors.blueAccent[400] : colors.blueAccent[500],
+            theme.palette.mode === "dark"
+              ? colors.blueAccent[400]
+              : colors.blueAccent[500],
         },
         "& .ps-menu-icon.ps-active": {
           color:
-            theme.palette.mode === "dark" ? colors.blueAccent[400] : colors.blueAccent[500],
+            theme.palette.mode === "dark"
+              ? colors.blueAccent[400]
+              : colors.blueAccent[500],
         },
       }}
     >
       <Sidebar
         collapsed={isCollapsed}
         backgroundColor={colors.primary[400]}
-        rootStyles={{
-          border: "none",
-        }}
+        rootStyles={{ border: "none" }}
       >
         <Menu
           border="none"
-          menuItemStyles={{
-            root: {
-              backgroundColor: "transparent",
-            },
+          rootStyles={{
+            root: { backgroundColor: "trasparent" },
             button: ({ active }) => {
-              return {
-                color: active ? "#b6c8d9" : undefined,
-              };
+              return { color: active ? "#344CFF" : undefined };
             },
           }}
         >
-          {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
@@ -110,24 +105,27 @@ export default function Menubar() {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.jpg`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
+                  alt="profile"
+                  src="../../assets/user.jpg"
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    cursor: "pointer",
+                    borderRadius: "50%",
+                  }}
+                ></img>
               </Box>
               <Box textAlign="center">
                 <Typography
                   variant="h2"
                   color={colors.grey[100]}
                   fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
+                  mt="10px"
                 >
                   Sam
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  System Admin
+                  System Manager
                 </Typography>
               </Box>
             </Box>
@@ -137,11 +135,10 @@ export default function Menubar() {
             <Item
               title="Dashboard"
               to="/"
-              icon={<HomeOutlinedIcon />}
+              icon={<HomeOutlinedIcon></HomeOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
-
+            ></Item>
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -151,26 +148,22 @@ export default function Menubar() {
             </Typography>
             <Item
               title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              icon={<PeopleOutlinedIcon></PeopleOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
+              title="Contact Information"
+              icon={<ContactsOutlinedIcon></ContactsOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
               title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
+              icon={<ReceiptOutlinedIcon></ReceiptOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
-
+            ></Item>
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -180,25 +173,22 @@ export default function Menubar() {
             </Typography>
             <Item
               title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
+              icon={<PersonOutlinedIcon></PersonOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
               title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
+              icon={<CalendarTodayOutlinedIcon></CalendarTodayOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              title="FAQ"
+              icon={<HelpOutlineOutlinedIcon></HelpOutlineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
 
             <Typography
               variant="h6"
@@ -209,32 +199,28 @@ export default function Menubar() {
             </Typography>
             <Item
               title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
+              icon={<BarChartOutlinedIcon></BarChartOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
               title="Pie Chart"
-              to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
+              icon={<PieChartOutlineOutlinedIcon></PieChartOutlineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
-              title="Line Chart"
-              to="/line"
-              icon={<TimelineOutlinedIcon />}
+              title="Timeline"
+              icon={<TimelineOutlinedIcon></TimelineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
             <Item
-              title="Geography Chart"
-              to="/geography"
-              icon={<MapOutlinedIcon />}
+              title="Map"
+              icon={<MapOutlinedIcon></MapOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
-            />
+            ></Item>
           </Box>
         </Menu>
       </Sidebar>
