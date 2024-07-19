@@ -6,6 +6,10 @@ import SignIn from "./pages/Signin";
 import TopBar from "./scenes/global/TopBar";
 import MenuBar from "./scenes/global/MenuBar";
 import Dashboard from "./scenes/dashboard";
+import Team from "./scenes/team";
+import Contacts from "./scenes/contacts";
+import Invoices from "./scenes/invoices";
+
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -21,6 +25,9 @@ function App() {
               <Route path="/" element={<Dashboard></Dashboard>}></Route>
               <Route path="/signup" element={<SignUp></SignUp>}></Route>
               <Route path="/signin" element={<SignIn></SignIn>}></Route>
+              <Route path="/team" element={<Team></Team>}></Route>
+              <Route path="/contacts" element={<Contacts></Contacts>}></Route>
+              <Route path="/invoices" element={<Invoices></Invoices>}></Route>
             </Routes>
           </main>
         </div>

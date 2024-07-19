@@ -15,20 +15,26 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import { useNavigate } from "react-router-dom";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
+  const nav = (title, to) => {
+    setSelected(title);
+    navigate(to);
+  };
 
   return (
     <MenuItem
       active={selected === title}
       style={{ color: colors.grey[100] }}
-      onClick={() => setSelected(title)}
+      onClick={() => nav(title, to)}
       icon={icon}
     >
       <Typography>{title}</Typography>
-      <Link t0={to}></Link>
+      <Link to={to}></Link>
     </MenuItem>
   );
 };
@@ -148,18 +154,21 @@ export default function MenuBar() {
             </Typography>
             <Item
               title="Manage Team"
+              to="/team"
               icon={<PeopleOutlinedIcon></PeopleOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
               title="Contact Information"
+              to="/contacts"
               icon={<ContactsOutlinedIcon></ContactsOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
               title="Invoices Balances"
+              to="/invoices"
               icon={<ReceiptOutlinedIcon></ReceiptOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
@@ -173,18 +182,21 @@ export default function MenuBar() {
             </Typography>
             <Item
               title="Profile Form"
+              to="/form"
               icon={<PersonOutlinedIcon></PersonOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
               title="Calendar"
+              to="/calendar"
               icon={<CalendarTodayOutlinedIcon></CalendarTodayOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
               title="FAQ"
+              to="/faq"
               icon={<HelpOutlineOutlinedIcon></HelpOutlineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
@@ -199,24 +211,28 @@ export default function MenuBar() {
             </Typography>
             <Item
               title="Bar Chart"
+              to="/bar"
               icon={<BarChartOutlinedIcon></BarChartOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
               title="Pie Chart"
+              to="/pie"
               icon={<PieChartOutlineOutlinedIcon></PieChartOutlineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
               title="Timeline"
+              to="/timeline"
               icon={<TimelineOutlinedIcon></TimelineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
             ></Item>
             <Item
-              title="Map"
+              title="Geographical Map"
+              to="/geography"
               icon={<MapOutlinedIcon></MapOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
