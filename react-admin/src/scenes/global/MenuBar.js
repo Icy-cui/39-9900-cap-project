@@ -224,8 +224,8 @@ export default function MenuBar() {
               setSelected={setSelected}
             ></Item>
             <Item
-              title="Timeline"
-              to="/timeline"
+              title="Line Chart"
+              to="/line"
               icon={<TimelineOutlinedIcon></TimelineOutlinedIcon>}
               selected={selected}
               setSelected={setSelected}
